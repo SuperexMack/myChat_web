@@ -1,0 +1,51 @@
+body{
+
+    background-color: gray;
+
+
+}
+
+.main-body{
+
+width: 50%;
+background-color: blanchedalmond;
+height: 500px;
+overflow: scroll;
+position: relative;
+left: 20%;
+top: 100px;
+border-radius: 15px;
+
+}
+
+.main-body::-webkit-scrollbar{
+
+display: none;
+        
+}
+      
+
+#message{
+
+position: relative;
+top: 630px;
+left: 300px;
+width: 20%;
+
+
+}
+
+#sendBtn{
+
+position: relative;
+top: 630px;
+left: 300px;
+width: 5%;
+
+
+}
+
+
+
+
+

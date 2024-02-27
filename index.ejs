@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+
+<input type="text" placeholder="Enter Your Message Here" id="message">
+<button id="sendBtn">Send</button>
+<div class="main-body">
+
+<div id="front-msg"></div>
+
+
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+const socket = io()
+
+const sendBtn = document.getElementById("sendBtn")
+const messageBox = document.getElementById("message")
+const showMsg = document.getElementById("front-msg")
+
+socket.on("message" , (mymsg)=>{
+
+
+const msgElement = document.createElement("div")
+
+msgElement.style.backgroundColor = mymsg.senderID ===  socket.id ? "black" : "gray";
+msgElement.style.color = mymsg.senderID === socket.id ? "white":"black";
+msgElement.style.fontSize = "20px";
+msgElement.style.width = "150px";
+msgElement.style.borderRadius = "20px";
+msgElement.style.padding = "20px";
+msgElement.style.marginTop = "40px"
+msgElement.style.marginLeft = mymsg.senderID === socket.id ? "0px":"500px";
+msgElement.textContent = `${mymsg.message}`
+showMsg.appendChild(msgElement)
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+sendBtn.addEventListener("click" , ()=>{
+
+let msg = messageBox.value
+if(msg.length>0){
+socket.emit("message" , msg)
+}
+messageBox.value = ""
+
+
+})
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
